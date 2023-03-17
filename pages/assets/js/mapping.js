@@ -1,4 +1,4 @@
-let workers = [
+let mahasiswa = [
     { id: 0, name: "Becki Howe", gender: "F", score: 65 },
     { id: 1, name: "Yuri Schildgen", gender: "F", score: 97 },
     { id: 2, name: "Becki Schewe", gender: "M", score: 89 },
@@ -1001,45 +1001,54 @@ let workers = [
     { id: 999, name: "Christeen Paris", gender: "M", score: 82 },
 ];
 
-let workersName = workers.map(getWorkerName);
+let filteredMahasiswa = mahasiswa.filter(function (item) {
+    return item.gender === "F" && item.score >= 80;
+})
+// .slice(0,10);
 
-function getWorkerName(value, index, array) {
-    return value.name;
+let mappedMahasiswa = filteredMahasiswa.map(function (item) {
+    return {
+        id: item.id,
+        name: item.name,
+        gender: item.gender === "F" ? "Perempuan" : "Laki - laki",
+        score: item.score,
+        status: item.score >= 80 ? "Lulus" : "Tidak Lulus"
+    };
+});
+
+let reducedMahasiswa = mappedMahasiswa.reduce(function (acc, item) {
+    acc.count += 1;
+    if (item.score > acc.max) { acc.max = item.score; }
+    if (item.score < acc.min) { acc.min = item.score; }
+    acc.sum += item.score;
+    acc.average = acc.sum / acc.count;
+
+    return acc;
+}, { count: 0, max: 0, min: 100, sum: 0, average: 0 });
+
+console.log(mappedMahasiswa);
+console.log(reducedMahasiswa);
+
+showData(mappedMahasiswa)
+reduceData(reducedMahasiswa)
+
+// ====================================================================================
+
+function showData(data) {
+    let table = document.getElementById("filteredTable");
+    for (let i = 0; i < data.length; i++) {
+        let row = table.insertRow(i);
+        row.insertCell(0).innerHTML = i + 1;
+        row.insertCell(1).innerHTML = data[i].name;
+        row.insertCell(2).innerHTML = data[i].gender;
+        row.insertCell(3).innerHTML = data[i].score;
+        row.insertCell(4).innerHTML = data[i].status;
+    }
 }
-console.log(workersName);
 
-let maleWorkers = workers.filter(getMaleWorker);
-function getMaleWorker(value, index, array) {
-    return value.gender = "male";
+function reduceData(data) {
+    document.getElementById('max').textContent = data.max;
+    document.getElementById('min').textContent = data.min;
+    document.getElementById('sum').textContent = data.sum;
+    document.getElementById('average').textContent = data.average.toFixed(2);
 }
-console.log(maleWorkers);
-
-
-let total = workers.reduce(sum);
-function sum(total, value, index, array) {
-    return total + value;
-}
-console.log(total);
-
-let merriedWorkers = workers.find(getMarriedWorker);
-
-function getMarriedWorker(value, index, array) {
-    return value.isMarried = true;
-}
-console.log(merriedWorkers);
-
-let haveMarriedWorker = workers.some(checkMarriedWorker);
-let isWorkerAbove20 = workers.every(checkWorkerAbove20);
-
-function checkMarriedWorker(value, index, array) {
-    return value.isMarried = true;
-}
-function checkWorkerAbove20(value, index, array) {
-    return value.age > 20;
-}
-console.log("Have Married Workers:", haveMarriedWorker);
-console.log("Workers Above 20", isWorkerAbove20);
-
-
-
-
