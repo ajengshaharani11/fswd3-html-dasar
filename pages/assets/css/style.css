@@ -1,257 +1,157 @@
-@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background: #edf0f1;
-    padding: 80px 0 0 0;
-}
-
-body,
-input,
-button {
-    font-family: 'Roboto', sans-serif;
-}
-
-.noFill {
-    fill: none;
+    background-color: #FFDAB9;
+    color: black;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
 }
 
 header {
-    width: 100%;
-    height: 80px;
-
-    position: fixed;
-    padding: 15px;
-    top: 0;
-    left: 0;
-    z-index: 5;
-
-    background: #25b99a;
-    box-shadow: 0px 2px 4px rgba(44, 62, 80, 0.15);
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
+    font-size: 1.5rem;
 }
 
-header input {
-    width: 100%;
-    height: 50px;
-    float: left;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 400;
-    text-indent: 18px;
-    padding: 0 60px 0 0;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px 25px 25px 5px;
-    border: 0px;
-    box-shadow: none;
-    outline: none;
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
+header,
+form {
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-header input::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, 0.75);
+form input,
+form button {
+    padding: 0.5rem;
+    padding-left: 1rem;
+    font-size: 1.8rem;
+    border: none;
+    background: burlywood;
+    border-radius: 1rem;
 }
 
-header input:-moz-input-placeholder {
-    color: rgba(255, 255, 255, 0.75);
-}
-
-header input::-moz-input-placeholder {
-    color: rgba(255, 255, 255, 0.75);
-}
-
-header input:-ms-input-placeholder {
-    color: rgba(255, 255, 255, 0.75);
-}
-
-header button {
-    width: 50px;
-    height: 50px;
-
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 2;
-
-    border-radius: 25px;
-    background: #fff;
-    border: 0px;
-    box-shadow: none;
-    outline: none;
+form button {
+    color: black;
+    background: burlywood;
     cursor: pointer;
+    transition: all 0.3 ease;
+    margin-left: 0.5rem;
+}
 
+form button:hover {
+    color: wheat;
+    background: black;
+}
+
+.fa-plus-circle {
+    margin-top: 0.3rem;
+    margin-left: -8px;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-list {
+    min-width: 30%;
+    list-style: none;
+}
+
+.todo {
+    margin: 0.5rem;
+    padding-left: 0.5rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 2rem;
+}
+
+.todo li {
+    flex: 1;
+}
+
+.trash-btn,
+.complete-btn {
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.complete-btn {
+    background: burlywood;
+}
+
+.trash-btn {
+    border-top-right-radius: 1.75rem;
+    border-bottom-right-radius: 1.75rem;
+    background: rgb(171, 171, 171);
+}
+
+.todo-item {
+    padding: 0rem 0.5rem;
+}
+
+.fa-trash,
+.fa-check-circle {
+    pointer-events: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.slide {
+    transform: translateX(10rem);
+    opacity: 0;
+}
+
+select {
     -webkit-appearance: none;
     -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
 }
 
-header button svg {
-    width: 16px;
-    height: 16px;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    margin: -8px 0 0 -8px;
-}
-
-header button svg .fill {
-    fill: #25b99a;
-}
-
-.container {
-    width: 100%;
-    float: left;
-    padding: 15px;
-}
-
-ul.todo {
-    width: 100%;
-    float: left;
-}
-
-ul.todo li {
-    width: 100%;
-    min-height: 50px;
-    float: left;
-    font-size: 14px;
-    font-weight: 500;
-    color: #444;
-    line-height: 22px;
-
-    background: #fff;
-    border-radius: 5px;
+.select {
+    margin: 1rem;
     position: relative;
-    box-shadow: 0px 1px 2px rgba(44, 62, 80, 0.10);
-    margin: 0 0 10px 0;
-    padding: 14px 100px 14px 14px;
-    word-break: break-word;
+    overflow: hidden;
+    border-radius: 50px;
 }
 
-ul.todo li:last-of-type {
-    margin: 0;
+select {
+    color: burlywood;
+    width: 10rem;
+    height: 3.2rem;
+    cursor: pointer;
+    padding: 1rem;
 }
 
-ul.todo li .buttons {
-    width: 100px;
-    height: 50px;
-
+.select::after {
+    content: "\25BC";
     position: absolute;
+    background: burlywood;
     top: 0;
     right: 0;
+    padding: 1rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
 }
 
-ul.todo li .buttons button {
-    width: 50px;
-    height: 50px;
-    float: left;
-    background: none;
-    position: relative;
-    border: 0px;
-    box-shadow: none;
-    outline: none;
-    cursor: pointer;
-
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-ul.todo li .buttons button:last-of-type:before {
-    content: '';
-    width: 1px;
-    height: 30px;
-    background: #edf0f1;
-
-    position: absolute;
-    top: 10px;
-    left: 0;
-}
-
-ul.todo li .buttons button svg {
-    width: 22px;
-    height: 22px;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    margin: -11px 0 0 -11px;
-}
-
-ul.todo li .buttons button.complete svg {
-    border-radius: 11px;
-    border: 1.5px solid #25b99a;
-
-    transition: background 0.2s ease;
-}
-
-ul.todo#completed li .buttons button.complete svg {
-    background: #25b99a;
-    border: 0px;
-}
-
-ul.todo:not(#completed) li .buttons button.complete:hover svg {
-    background: rgba(37, 185, 154, 0.75);
-}
-
-ul.todo:not(#completed) li .buttons button.complete:hover svg .fill {
-    fill: #fff;
-}
-
-ul.todo#completed li .buttons button.complete svg .fill {
-    fill: #fff;
-}
-
-ul.todo li .buttons button svg .fill {
-    transition: fill 0.2s ease;
-}
-
-ul.todo li .buttons button.remove svg .fill {
-    fill: #c0cecb;
-}
-
-ul.todo li .buttons button.remove:hover svg .fill {
-    fill: #e85656;
-}
-
-ul.todo li .buttons button.complete svg .fill {
-    fill: #25b99a;
-}
-
-ul.todo#completed {
-    position: relative;
-    padding: 60px 0 0 0;
-}
-
-ul.todo#completed:before {
-    content: '';
-    width: 150px;
-    height: 1px;
-    background: #d8e5e0;
-
-    position: absolute;
-    top: 30px;
-    left: 50%;
-
-    margin: 0 0 0 -75px;
-}
-
-ul.todo#todo:empty:after {
-    content: 'You have nothing to-do!';
-    margin: 15px 0 0 0;
-}
-
-ul.todo#completed:empty:after {
-    content: 'You have yet to complete any tasks.';
-}
-
-ul.todo#todo:after,
-ul.todo#completed:after {
-    width: 100%;
-    display: block;
-    text-align: center;
-    font-size: 12px;
-    color: #aaa;
+.select::hover::after {
+    background: white;
+    color: burlywood;
 }
